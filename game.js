@@ -27,14 +27,14 @@ context.fillRect(appleX, appleY, boardSize, boardSize);
 if (snakeX >= stage.width){
     snakeX = 0 - boardSize;
 }
-if (snakeX <= 0 - 2*boardSize){
-    snakeX = stage.width - 1;
+if (snakeX < 0 - boardSize){
+    snakeX = stage.width - speed;
 }
-if (snakeY > stage.height){
+if (snakeY >= stage.height){
     snakeY = 0 - boardSize;
 }
-if (snakeY < 0 - 2*boardSize){
-    snakeY = stage.height;
+if (snakeY < 0 - boardSize){
+    snakeY = stage.height - speed;
 }
 
 
