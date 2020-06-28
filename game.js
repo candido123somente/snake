@@ -1,59 +1,82 @@
 let stage = document.getElementById("GameCanvas");
 let context = stage.getContext("2d");
-this.document.addEventListener("keydown", keyPush);
-
+document.addEventListener("keydown", keyPush);
 setInterval(inGame, 30);
 
-let boardSize = 20;
-let speed = 5;
+let boardPieceSize = 15;
+let boardAmountX = 40;
+let boardAmountY = 30;
 
-let snakeX = 1;
-let snakeY = 1;
+let speed = 1/2;
+let speedX = 1/2;
+let speedY = 0;
+let drag = [];
 
-let appleX = 1;
-let appleY = 1;
+let snakeX = 8;
+let snakeY = 4;
+
+let appleX = 20;
+let appleY = 15;
+
 
 function inGame(){
-this.document.addEventListener("keydown", keyPush);
+
 context.fillStyle = "black";
 context.fillRect(0,0,600,400);
 
-context.fillStyle = "green";
-context.fillRect(snakeX, snakeY, boardSize, boardSize);
 
 context.fillStyle = "red";
-context.fillRect(appleX, appleY, boardSize, boardSize);
+context.fillRect(appleX*boardPieceSize, appleY*boardPieceSize, boardPieceSize, boardPieceSize);
 
-if (snakeX >= stage.width){
-    snakeX = 0 - boardSize;
-}
-if (snakeX < 0 - boardSize){
-    snakeX = stage.width - speed;
-}
-if (snakeY >= stage.height){
-    snakeY = 0 - boardSize;
-}
-if (snakeY < 0 - boardSize){
-    snakeY = stage.height - speed;
-}
 
+
+context.fillStyle = "green";
+for (var i = 0; i < drag.length; i++){
+    context.fillRect(drag[i].dragX*boardPieceSize, drag[i].dragY*boardPieceSize, boardPieceSize, boardPieceSize);
+};
+
+
+drag.push(
+    {dragX:snakeX, dragY: snakeY}
+)
+
+snakeX = snakeX + speedX;
+snakeY = snakeY + speedY;
+
+
+if (snakeX > boardAmountX -1){ 
+    snakeX = 0;
+}
+if (snakeX < 0){
+    snakeX = boardAmountX - 1;
+}
+if (snakeY > boardAmountY -1){
+    snakeY = 0;
+}
+if (snakeY < 0){
+    snakeY = boardAmountY - 1;
+}
 
 }
 
 function keyPush(event){
 
     switch (event.keyCode){
-        case 37: // tecla da esquerda
-        snakeX = snakeX - speed;
+        case 37: // left key
+        speedX = - speed;
+        speedY = 0;
         break;
-        case 38: // tecla de cima
-        snakeY = snakeY - speed;
+        case 38: // up key
+        speedX = 0;
+        speedY = - speed;
         break;
-        case 39: // tecla de direita
-        snakeX = snakeX + speed;
+        case 39: // right key
+        speedX = + speed;
+        speedY = 0;
         break;
-        case 40: // tecla de baixo
-        snakeY = snakeY + speed;
+        case 40: // down key
+        speedX = 0;
+        speedY = + speed;
         break;
         default:
             break;
