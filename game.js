@@ -1,22 +1,23 @@
 let stage = document.getElementById("GameCanvas");
 let context = stage.getContext("2d");
 document.addEventListener("keydown", keyPush);
-setInterval(inGame, 30);
+setInterval(inGame, 60);
 
-let boardPieceSize = 15;
-let boardAmountX = 40;
-let boardAmountY = 30;
+let boardPieceSize = 20;
+let boardAmountX = 30;
+let boardAmountY = 20;
 
 let speed = 1/2;
 let speedX = 1/2;
 let speedY = 0;
 let drag = [];
+let tail = 3;
 
 let snakeX = 8;
 let snakeY = 4;
 
-let appleX = 20;
-let appleY = 15;
+let appleX = Math.floor(Math.random() * 29);
+let appleY = Math.floor(Math. random() * 19);
 
 
 function inGame(){
@@ -39,6 +40,9 @@ for (var i = 0; i < drag.length; i++){
 drag.push(
     {dragX:snakeX, dragY: snakeY}
 )
+while (drag.length > tail){
+    drag.shift();
+}
 
 snakeX = snakeX + speedX;
 snakeY = snakeY + speedY;
@@ -56,6 +60,14 @@ if (snakeY > boardAmountY -1){
 if (snakeY < 0){
     snakeY = boardAmountY - 1;
 }
+
+if (snakeX == appleX && snakeY == appleY){
+    tail = tail + 1;
+    appleX = Math.floor(Math.random() * 29);
+    appleY = Math.floor(Math. random() * 19);
+   
+}
+
 
 }
 
