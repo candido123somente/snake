@@ -3,6 +3,7 @@ let context = stage.getContext("2d");
 document.addEventListener("keydown", keyPush);
 setInterval(inGame, 60);
 
+
 let boardPieceSize = 20;
 let boardAmountX = 30;
 let boardAmountY = 20;
@@ -19,6 +20,7 @@ let snakeY = 4;
 let appleX = Math.floor(Math.random() * 29);
 let appleY = Math.floor(Math. random() * 19);
 
+let points = 0;
 
 function inGame(){
 
@@ -62,11 +64,15 @@ if (snakeY < 0){
 }
 
 if (snakeX == appleX && snakeY == appleY){
+    points = points + 1;
+    console.log(points);
     tail = tail + 1;
     appleX = Math.floor(Math.random() * 29);
     appleY = Math.floor(Math. random() * 19);
    
 }
+
+
 
 
 }
