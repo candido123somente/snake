@@ -27,7 +27,6 @@ function inGame(){
 context.fillStyle = "black";
 context.fillRect(0,0,600,400);
 
-
 context.fillStyle = "red";
 context.fillRect(appleX*boardPieceSize, appleY*boardPieceSize, boardPieceSize, boardPieceSize);
 
@@ -38,6 +37,9 @@ for (var i = 0; i < drag.length; i++){
     context.fillRect(drag[i].dragX*boardPieceSize, drag[i].dragY*boardPieceSize, boardPieceSize, boardPieceSize);
 };
 
+context.fillStyle = "white";
+context.font = "10px arial";
+context.fillText(points, 580, 15);
 
 drag.push(
     {dragX:snakeX, dragY: snakeY}
@@ -65,7 +67,6 @@ if (snakeY < 0){
 
 if (snakeX == appleX && snakeY == appleY){
     points = points + 1;
-    console.log(points);
     tail = tail + 1;
     appleX = Math.floor(Math.random() * 29);
     appleY = Math.floor(Math. random() * 19);
