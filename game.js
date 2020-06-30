@@ -5,7 +5,7 @@ window.onload = currentScreen;
 
 
 let boardPieceSize = 20;
-let boardAmountX = 30;
+let boardAmountX = 20;
 let boardAmountY = 20;
 let speed = 1/2;
 let speedX = 1/2;
@@ -13,31 +13,54 @@ let speedY = 0;
 let drag = [];
 let tail = 3;
 
-let snakeX = 8;
+let snakeX = 8;     
 let snakeY = 4;
 
-let appleX = Math.floor(Math.random() * 29);
+let appleX = Math.floor(Math.random() * 19);
 let appleY = Math.floor(Math. random() * 19);
 
 let points = 0;
 
-function currentScreen(){ 
-           menuGame();
-}
+var switchscreen = "begin";
+
 function menuGame(){
+    
     context.fillStyle = "black";
-    context.fillRect(0,0, 600, 400);
+    context.fillRect(0,0, 400, 400);
+    context.fillStyle = "white";
+    context.font = "50px Helveltica";
+    context.fillText("Snake", 130, 180);
+    context.font = "15px Helveltica";
+    context.fillText("Press space to start", 130, 320);
+}
+
+function endGame(){
+    context.fillStyle = "black";
+    context.fillRect(0,0, 400, 400);
     context.fillStyle = "white";
     context.font = "45px Helveltica";
-    context.fillText("Snake", 220, 180);
+    context.fillText("You Lose", 190, 180);
     context.font = "15px Helveltica";
-    context.fillText("Press space to start", 220, 210);
+    context.fillText("Press space to play again", 170, 210);
+}
+
+function stopGame(){
+    context.fillStyle = "black";
+    context.fillRect(0,0, 400, 400);
+    context.fillStyle = "white";
+    context.font = "45px Helveltica";
+    context.fillText("Continue", 100, 150);
+    context.font = "15px Helveltica";
+    context.fillText("Press space to go back", 115, 180);
+    context.fillStyle = "white";
+    context.font = "30px arial";
+    context.fillText("Score " + points, 140, 255);
 }
 
 function inGame(){
 
 context.fillStyle = "black";
-context.fillRect(0,0,600,400);
+context.fillRect(0,0,400,400);
 
 context.fillStyle = "red";
 context.fillRect(appleX*boardPieceSize, appleY*boardPieceSize, boardPieceSize, boardPieceSize);
@@ -48,7 +71,7 @@ for (var i = 0; i < drag.length; i++){
 
 context.fillStyle = "white";
 context.font = "10px arial";
-context.fillText(points, 580, 15);
+context.fillText(points, 380, 15);
 
 drag.push(
     {dragX:snakeX, dragY: snakeY}
@@ -77,7 +100,7 @@ drag.push(
     if (snakeX == appleX && snakeY == appleY){
         points = points + 1;
         tail = tail + 1;
-        appleX = Math.floor(Math.random() * 29);
+        appleX = Math.floor(Math.random() * 19);
         appleY = Math.floor(Math. random() * 19);
     
 }
@@ -105,10 +128,30 @@ function keyPush(event){
         speedX = 0;
         speedY = + speed;
         break;
-        case 32:
-            setInterval(inGame, 60);
+        case 32: //space key
+        if (switchscreen == "begin") {
+            switchscreen = "in";
+            currentScreen();
+        } else if (switchscreen == "stop"){
+            switchscreen = "goToStop";
+            currentScreen()
+        }
+        
             break;
         default:
             break;
     }
+
+}
+function currentScreen(){  
+        if (switchscreen == "begin") {
+        menuGame();
+        } else if (switchscreen == "in") {
+       looping = setInterval(inGame, 60);
+        switchscreen = "stop";
+        } else if (switchscreen == "goToStop") {
+            clearInterval(looping);
+            stopGame();
+            switchscreen = "begin";
+        }
 }
