@@ -39,9 +39,11 @@ function endGame(){
     context.fillRect(0,0, 400, 400);
     context.fillStyle = "white";
     context.font = "45px Helveltica";
-    context.fillText("You Lose", 190, 180);
+    context.fillText("GAME OVER", 70, 180);
+    context.font = "18px Helveltica";
+    context.fillText("score: " + points, 160, 210);
     context.font = "15px Helveltica";
-    context.fillText("Press space to play again", 170, 210);
+    context.fillText("Press space to play again", 120, 310);
 }
 
 function stopGame(){
@@ -67,6 +69,20 @@ context.fillRect(appleX*boardPieceSize, appleY*boardPieceSize, boardPieceSize, b
 context.fillStyle = "green";
 for (var i = 0; i < drag.length; i++){
     context.fillRect(drag[i].dragX*boardPieceSize, drag[i].dragY*boardPieceSize, boardPieceSize, boardPieceSize);
+    if (drag[i].dragX == snakeX && drag[i].dragY == snakeY){
+        clearInterval(looping);
+         endGame();
+         points = 0;
+         tail = 3; 
+         appleX = Math.floor(Math.random() * 19);
+         appleY = Math.floor(Math. random() * 19);  
+         snakeX = 8;     
+         snakeY = 4; 
+         speedX = + speed;
+         speedY = 0;
+         switchscreen = "begin";
+         
+    }
 };
 
 context.fillStyle = "white";
@@ -98,7 +114,7 @@ drag.push(
     }
     
     if (snakeX == appleX && snakeY == appleY){
-        points = points + 1;
+        points = points + 5;
         tail = tail + 1;
         appleX = Math.floor(Math.random() * 19);
         appleY = Math.floor(Math. random() * 19);
@@ -113,20 +129,36 @@ function keyPush(event){
 
     switch (event.keyCode){
         case 37: // left key
+        if (speedX == + speed && speedY == 0) {
+            undefined;
+        } else {
         speedX = - speed;
         speedY = 0;
+    }
         break;
         case 38: // up key
+        if (speedX == 0 && speedY == + speed){
+            undefined;
+        } else {
         speedX = 0;
         speedY = - speed;
+        }
         break;
         case 39: // right key
+        if (speedX == - speed && speedY == 0){
+            undefined;
+        } else {
         speedX = + speed;
         speedY = 0;
+        }
         break;
         case 40: // down key
+        if (speedX == 0 && speedY == - speed) {
+            undefined;
+        } else {
         speedX = 0;
         speedY = + speed;
+        }
         break;
         case 32: //space key
         if (switchscreen == "begin") {
