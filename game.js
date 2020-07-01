@@ -1,14 +1,19 @@
 let stage = document.getElementById("GameCanvas");
 let context = stage.getContext("2d");
+const sound_starting = new Audio();
+sound_starting.src = './SFX/starting.wav';
+const sound_gaming = new Audio();
+sound_gaming.src = './SFX/gaming.mp3';
+const sound_death = new Audio();
+sound_death.src = './SFX/death.wav';
 document.addEventListener("keydown", keyPush);
 window.onload = currentScreen;
-
 
 let boardPieceSize = 20;
 let boardAmountX = 20;
 let boardAmountY = 20;
-let speed = 1/2;
-let speedX = 1/2;
+let speed = 1;
+let speedX = 1;
 let speedY = 0;
 let drag = [];
 let tail = 3;
@@ -57,9 +62,11 @@ function stopGame(){
     context.fillStyle = "white";
     context.font = "30px arial";
     context.fillText("Score " + points, 140, 255);
+    sound_gaming.pause();
 }
 
 function inGame(){
+sound_gaming.play();
 
 context.fillStyle = "black";
 context.fillRect(0,0,400,400);
@@ -70,6 +77,9 @@ context.fillStyle = "green";
 for (var i = 0; i < drag.length; i++){
     context.fillRect(drag[i].dragX*boardPieceSize, drag[i].dragY*boardPieceSize, boardPieceSize, boardPieceSize);
     if (drag[i].dragX == snakeX && drag[i].dragY == snakeY){
+        sound_gaming.pause();
+        sound_gaming.currentTime = 0; 
+        sound_death.play();
         clearInterval(looping);
          endGame();
          points = 0;
@@ -163,6 +173,7 @@ function keyPush(event){
         case 32: //space key
         if (switchscreen == "begin") {
             switchscreen = "in";
+            sound_starting.play();
             currentScreen();
         } else if (switchscreen == "stop"){
             switchscreen = "goToStop";
@@ -179,7 +190,7 @@ function currentScreen(){
         if (switchscreen == "begin") {
         menuGame();
         } else if (switchscreen == "in") {
-       looping = setInterval(inGame, 60);
+       looping = setInterval(inGame, 90);
         switchscreen = "stop";
         } else if (switchscreen == "goToStop") {
             clearInterval(looping);
