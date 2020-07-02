@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(96, 2, 150);
+}
+
+.container{
+margin: 100px 100px;
+padding: 20px 350px;
+
+background-color: rgba(0, 0, 0, 0.65);
+}
