@@ -205,7 +205,7 @@ function currentScreen(){
         if (switchscreen == "begin") {
         menuGame();
         } else if (switchscreen == "in") {
-       looping = setInterval(inGame, 60);
+       looping = setInterval(inGame, 120);
         switchscreen = "stop";
         } else if (switchscreen == "goToStop") {
             clearInterval(looping);
