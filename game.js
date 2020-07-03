@@ -88,8 +88,9 @@ for (var i = 0; i < drag.length; i++){
         if (mute == false) {
         sound_death.play();
         }
-        clearInterval(looping);
-
+        clearInterval(looping);        
+        switchscreen = "begin";
+        endGame();
          points = 0;
          tail = 3; 
          appleX = Math.floor(Math.random() * 19);
@@ -98,8 +99,6 @@ for (var i = 0; i < drag.length; i++){
          snakeY = 4; 
          speedX = + speed;
          speedY = 0;
-         switchscreen = "begin";
-         endGame();
     }
 };
 
