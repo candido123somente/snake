@@ -28,6 +28,8 @@ let points = 0;
 
 var switchscreen = "begin";
 
+let mute = false;
+
 function menuGame(){
     
     context.fillStyle = "black";
@@ -36,7 +38,7 @@ function menuGame(){
     context.font = "50px Helveltica";
     context.fillText("Snake", 130, 180);
     context.font = "15px Helveltica";
-    context.fillText("Press space to start", 130, 320);
+    context.fillText("Press space to start", 135, 320);
 }
 
 function endGame(){
@@ -56,17 +58,21 @@ function stopGame(){
     context.fillRect(0,0, 400, 400);
     context.fillStyle = "white";
     context.font = "45px Helveltica";
-    context.fillText("Continue", 100, 150);
+    context.fillText("Continue", 113, 150);
     context.font = "15px Helveltica";
-    context.fillText("Press space to go back", 115, 180);
+    context.fillText("Press space to go back", 125, 180);
     context.fillStyle = "white";
     context.font = "30px arial";
-    context.fillText("Score " + points, 140, 255);
+    context.fillText("Score " + points, 150, 255);
     sound_gaming.pause();
 }
 
 function inGame(){
+if(mute == false){
 sound_gaming.play();
+} else if (mute == true){
+sound_gaming.pause();
+}
 
 context.fillStyle = "black";
 context.fillRect(0,0,400,400);
@@ -78,10 +84,12 @@ for (var i = 0; i < drag.length; i++){
     context.fillRect(drag[i].dragX*boardPieceSize, drag[i].dragY*boardPieceSize, boardPieceSize, boardPieceSize);
     if (drag[i].dragX == snakeX && drag[i].dragY == snakeY){
         sound_gaming.pause();
-        sound_gaming.currentTime = 0; 
+        sound_gaming.currentTime = 0;
+        if (mute == false) {
         sound_death.play();
+        }
         clearInterval(looping);
-         endGame();
+
          points = 0;
          tail = 3; 
          appleX = Math.floor(Math.random() * 19);
@@ -91,7 +99,7 @@ for (var i = 0; i < drag.length; i++){
          speedX = + speed;
          speedY = 0;
          switchscreen = "begin";
-         
+         endGame();
     }
 };
 
@@ -173,13 +181,21 @@ function keyPush(event){
         case 32: //space key
         if (switchscreen == "begin") {
             switchscreen = "in";
+            if (mute == false){
             sound_starting.play();
+            }
             currentScreen();
         } else if (switchscreen == "stop"){
             switchscreen = "goToStop";
             currentScreen()
         }
-        
+            break;
+        case 77: // M letter
+            if (mute == true){
+                mute = false;
+            } else if (mute == false){
+                mute = true;
+            }
             break;
         default:
             break;
@@ -190,7 +206,7 @@ function currentScreen(){
         if (switchscreen == "begin") {
         menuGame();
         } else if (switchscreen == "in") {
-       looping = setInterval(inGame, 90);
+       looping = setInterval(inGame, 60);
         switchscreen = "stop";
         } else if (switchscreen == "goToStop") {
             clearInterval(looping);

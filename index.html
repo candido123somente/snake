@@ -2,15 +2,24 @@
 <html lang="pt-br">
 <head>
     <meta charset ="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <title>Snake</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div class="container">
-    <canvas id="GameCanvas" width="400" height="400" >
+    <div id="snakeLogo"></div>
+    <div class="menuContainer"><h3>Instructions:</h3>
+        <p>Press space to start.</p>
+        <p>In game, press space to pause.</p>
+        <p>Press 'M' to mute.</p>
+        <p>If you die, press space to play again.</p>
+    </div>
+    <canvas id="GameCanvas" width="400" height="400" >  
         <script type="text/javascript" src="game.js"></script> 
     </canvas>
     </div>
+    <footer><a href="https://github.com/candido123somente"> ©  2020 Candido Ferreira</a></footer>
 </body>
 
 </html>
