@@ -7,7 +7,7 @@ sound_gaming.src = './SFX/gaming.mp3';
 const sound_death = new Audio();
 sound_death.src = './SFX/death.wav';
 document.addEventListener("keydown", keyPush);
-window.onload = currentScreen;
+window.onload = menuGame;
 
 let boardPieceSize = 20;
 let boardAmountX = 20;
@@ -35,35 +35,35 @@ function menuGame(){
     context.fillStyle = "black";
     context.fillRect(0,0, 400, 400);
     context.fillStyle = "white";
-    context.font = "50px Helveltica";
-    context.fillText("Snake", 130, 180);
-    context.font = "15px Helveltica";
-    context.fillText("Press space to start", 135, 320);
+    context.font = "50px Retro Gaming";
+    context.fillText("Snake", 105, 160);
+    context.font = "15px Retro Gaming";
+    context.fillText("Press space to start", 100, 300);
 }
 
 function endGame(){
     context.fillStyle = "black";
     context.fillRect(0,0, 400, 400);
     context.fillStyle = "white";
-    context.font = "45px Helveltica";
-    context.fillText("GAME OVER", 70, 180);
-    context.font = "18px Helveltica";
-    context.fillText("score: " + points, 160, 210);
-    context.font = "15px Helveltica";
-    context.fillText("Press space to play again", 120, 310);
+    context.font = "45px Retro Gaming";
+    context.fillText("GAME OVER", 50, 180);
+    context.font = "18px Retro Gaming";
+    context.fillText("score: " + points, 140, 210);
+    context.font = "15px Retro Gaming";
+    context.fillText("Press space to play again", 75, 310);
 }
 
 function stopGame(){
     context.fillStyle = "black";
     context.fillRect(0,0, 400, 400);
     context.fillStyle = "white";
-    context.font = "45px Helveltica";
-    context.fillText("Continue", 113, 150);
-    context.font = "15px Helveltica";
-    context.fillText("Press space to go back", 125, 180);
+    context.font = "45px Retro Gaming";
+    context.fillText("Continue", 73, 150);
+    context.font = "15px Retro Gaming";
+    context.fillText("Press space to go back", 88, 180);
     context.fillStyle = "white";
-    context.font = "30px arial";
-    context.fillText("Score " + points, 150, 255);
+    context.font = "30px Retro Gaming";
+    context.fillText("Score " + points, 120, 255);
     sound_gaming.pause();
 }
 
@@ -103,7 +103,7 @@ for (var i = 0; i < drag.length; i++){
 };
 
 context.fillStyle = "white";
-context.font = "10px arial";
+context.font = "10px Retro Gaming";
 context.fillText(points, 380, 15);
 
 drag.push(
