@@ -3,16 +3,23 @@
     font-family: "Retro Gaming";
     src: url("fonts/Retro Gaming.ttf");
 }
-/* END GAME FONT */
 
-html{
+/* END GAME FONT */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font: 100% "Retro Gaming";
-    min-height: 100%;
+}
+
+html {
+
     height: 100%;
 }
 
-body{
-    background-color:rgb(0, 61, 3);
+body {
+    background-color: rgb(0, 61, 3);
     background-image: url('img/jungleImage.png');
     background-position: bottom;
     background-attachment: fixed;
@@ -21,34 +28,52 @@ body{
     min-height: 100%;
     display: flex;
     flex-direction: column;
-}   
+}
 
-.container{
-    width: 700px;
-    margin: 1.5% auto;
-    padding: 1.5%;
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.65);
+
+@media (min-width: 789px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+        margin: auto;
+        padding: 1.5%;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.65);
     }
+}
 
-#snakeLogo{
+@media (max-width: 768px) {  /* mobile container */
+    .container {
+        display: grid;
+        grid-template-columns: 2fr;
+        grid-gap: 1rem; 
+        margin: auto;
+        padding: 1.5%;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+}
+
+.menuContainer {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    cursor: default;
+    padding: 2%;
+}
+
+#snakeLogo {
+    size: 1rem;
     margin: 0 50%;
     transform: translate(-50%);
 }
-
-.menuContainer{
-    float: right;
-    background-color: #f9f9f9;
-    max-width: 250px;
-    border-radius: 5px;
-    padding: 2%;
-}
-.menuContainer h1{
+.menuContainer h1 {
     font-size: 1.3rem;
     text-align: center;
     font-weight: 700;
 }
-.menuContainer p{
+
+.menuContainer p {
     font-size: 0.9rem;
     text-align: left;
     font-weight: 600;
@@ -56,15 +81,16 @@ body{
 
 
 /* FOOTER */
-footer{
+footer {
     margin-top: auto;
     text-align: center;
 }
-footer a{
+
+footer a {
     font-size: 1rem;
     text-decoration: none;
-    color:#fff;
+    color: #fff;
     text-shadow: 0.5px 0.5px #111111;
 }
-/* END FOOTER */
 
+/* END FOOTER */
