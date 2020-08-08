@@ -30,36 +30,44 @@ body {
     flex-direction: column;
 }
 
+@media (orientation: landscape) {
 
-@media (min-width: 789px) {
     .container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 0.75fr;
+        grid-gap: 1rem;
+        margin: auto;
+        padding: 1.5%;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.65);
+        justify-content: center;
+    }
+    .menuContainer {
+        padding: 15% 5%;
+    }
+}
+
+@media (orientation: portrait) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 0.75fr;
         grid-gap: 1rem;
         margin: auto;
         padding: 1.5%;
         border-radius: 20px;
         background-color: rgba(0, 0, 0, 0.65);
     }
-}
-
-@media (max-width: 768px) {  /* mobile container */
-    .container {
-        display: grid;
-        grid-template-columns: 2fr;
-        grid-gap: 1rem; 
-        margin: auto;
-        padding: 1.5%;
-        border-radius: 20px;
-        background-color: rgba(0, 0, 0, 0.65);
+    .menuContainer {
+        padding: 4% 7%;
     }
+
 }
 
 .menuContainer {
     background-color: #f9f9f9;
     border-radius: 5px;
     cursor: default;
-    padding: 2%;
 }
 
 #snakeLogo {
@@ -67,10 +75,12 @@ body {
     margin: 0 50%;
     transform: translate(-50%);
 }
+
 .menuContainer h1 {
     font-size: 1.3rem;
     text-align: center;
     font-weight: 700;
+
 }
 
 .menuContainer p {
