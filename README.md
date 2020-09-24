@@ -1,6 +1,13 @@
-# :snake: Jogo da cobrinha :snake: 
+# :snake: Retro Snake Game :snake: 
 ---
-### Para ver o resultado final do jogo [CLIQUE AQUI](https://sh0uryu.github.io/snake/)
-### Resolvi desenvolver esse jogo para poder por em prática minhas habilidades em javascripte praticar o desenvolvimento em html e css, um outro motivo que resolvi também criar esse repositórioé para me familiarizar mais com o uso das ferramentas Git/Github.
+### [CLICK HERE](https://sh0uryu.github.io/snake/) to play the game
+### I decided to create this game to train my new skills in javascript, HTML and CSS; it's my first project on Github also using git.
 ---
-##### Qualquer dica, sujestão ou pull request é bem vinda e se possível com detalhes do porquê.
+## Contributing
+---
+#### As my first project, i'm always coming back to see when i learn new stuff, and I feel the need in the near future refactory all the code
+to fix some bad choices, and make more easy to future upgrades. But afterall, Pull requests are welcome.
+---
+## License 
+---
+[MIT](https://github.com/sh0uryu/snake/blob/master/LICENSE)
